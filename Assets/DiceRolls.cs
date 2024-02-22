@@ -16,7 +16,13 @@ public class DiceRolls
         this.number = 0;
         this.typeDice = 0;
         this.modificator = 0;
-    }  
+    }
+    public DiceRolls(int number)
+    {
+        this.number = number;
+        this.typeDice = 0;
+        this.modificator = 0;
+    }
 
     public DiceRolls(int number,int typeDice)
     {
@@ -41,11 +47,18 @@ public class DiceRolls
     // function to roll a dice
     public int roll() {
         int res=0;
-        for (int i=0;i<this.number; i++)
+        if(this.typeDice > 0)
         {
-            res += UnityEngine.Random.Range(1,this.typeDice);
+            for (int i = 0; i < this.number; i++)
+            {
+                res += UnityEngine.Random.Range(1, this.typeDice);
+            }
+            res += this.modificator;
         }
-        res += this.modificator;
+        else
+        {
+            res = number;
+        }
         return res;
     }
     //function to add two dice roll
